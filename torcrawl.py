@@ -161,6 +161,7 @@ def main():
     parser.add_argument(
         '-y',
         '--yara',
+        default=0,
         help='Check for keywords and only scrape documents that contain a '
              'match. 0 search whole html object. 1 search only the text.'
     )
