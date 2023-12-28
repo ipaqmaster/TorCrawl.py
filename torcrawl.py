@@ -198,8 +198,7 @@ def main():
             out_path = folder(extract_domain(website), args.verbose)
 
     if args.crawl:
-        crawler = Crawler(website, c_depth, c_pause, out_path, args.log,
-                          args.verbose)
+        crawler = Crawler(website, c_depth, c_pause, out_path, args.log, args.verbose)
         lst = crawler.crawl()
         with open(out_path + '/links.txt', 'w+', encoding='UTF-8') as file:
             for item in lst:
@@ -207,11 +206,9 @@ def main():
         print(f"## File created on {os.getcwd()}/{out_path}/links.txt")
         if args.extract:
             input_file = out_path + "/links.txt"
-            extractor(website, args.crawl, output_file, input_file, out_path,
-                      int(args.yara))
+            extractor(website, args.crawl, output_file, input_file, out_path, int(args.yara))
     else:
-        extractor(website, args.crawl, output_file, input_file, out_path,
-                  int(args.yara))
+        extractor(website, args.crawl, output_file, input_file, out_path, int(args.yara))
 
 
 # Stub to call main method.
