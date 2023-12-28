@@ -168,6 +168,12 @@ def main():
 
     args = parser.parse_args()
 
+    # Print help and exit without a url argument.
+    if not args.url:
+        print('Need -u/--url')
+        parser.print_help()
+        exit(1)
+
     # Parse arguments to variables else initiate variables.
     input_file = args.input if args.input else ''
     output_file = args.output if args.output else ''
