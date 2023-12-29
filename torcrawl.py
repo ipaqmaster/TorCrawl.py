@@ -212,7 +212,7 @@ def main():
     if args.crawl:
         crawler = Crawler(website, c_depth, c_pause, out_path, args.agent, args.log, args.verbose)
         lst = crawler.crawl()
-        with open(out_path + '/links.txt', 'w+', encoding='UTF-8') as file:
+        with open(out_path + '/links.txt', 'a+', encoding='UTF-8') as file:
             for item in lst:
                 file.write(f"{item}\n")
         print(f"## File created on {os.getcwd()}/{out_path}/links.txt")
