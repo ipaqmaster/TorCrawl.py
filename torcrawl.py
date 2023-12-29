@@ -94,6 +94,12 @@ def main():
 
     # General
     parser.add_argument(
+        '-a',
+        '--agent',
+        default='',
+        help='Set a user-agent string to work around cautious sites responding empty.'
+    )
+    parser.add_argument(
         '-v',
         '--verbose',
         action='store_true',
@@ -204,7 +210,7 @@ def main():
             out_path = folder(extract_domain(website), args.verbose)
 
     if args.crawl:
-        crawler = Crawler(website, c_depth, c_pause, out_path, args.log, args.verbose)
+        crawler = Crawler(website, c_depth, c_pause, out_path, args.agent, args.log, args.verbose)
         lst = crawler.crawl()
         with open(out_path + '/links.txt', 'w+', encoding='UTF-8') as file:
             for item in lst:

@@ -11,13 +11,18 @@ from bs4 import BeautifulSoup
 
 
 class Crawler:
-    def __init__(self, website, c_depth, c_pause, out_path, logs, verbose):
+    def __init__(self, website, c_depth, c_pause, out_path, agent, logs, verbose):
+        self.agent   = agent
         self.website = website
         self.c_depth = c_depth
         self.c_pause = c_pause
         self.out_path = out_path
         self.logs = logs
         self.verbose = verbose
+
+        self.opener = urllib.request.build_opener()
+        if len(self.agent) > 0:
+          self.opener.addheaders = [('User-agent', self.agent)]
 
     def excludes(self, link):
         """ Excludes links that are not required.
@@ -108,13 +113,13 @@ class Crawler:
                 if ord_lst_ind > 0:
                     try:
                         if item is not None:
-                            html_page = urllib.request.urlopen(item)
+                            html_page = self.opener.open(item).read()
                     except HTTPError as error:
                         print(error)
                         continue
                 else:
                     try:
-                        html_page = urllib.request.urlopen(self.website)
+                        html_page = self.opener.open(self.website).read()
                         ord_lst_ind += 1
                     except HTTPError as error:
                         print(error)
