@@ -34,19 +34,19 @@ class Crawler:
         # External links
         elif link.startswith('http') and not link.startswith(self.website):
             file_path = self.out_path + '/extlinks.txt'
-            with open(file_path, 'w+', encoding='UTF-8') as lst_file:
+            with open(file_path, 'a+', encoding='UTF-8') as lst_file:
                 lst_file.write(str(link) + '\n')
             return True
         # Telephone Number
         elif link.startswith('tel:'):
             file_path = self.out_path + '/telephones.txt'
-            with open(file_path, 'w+', encoding='UTF-8') as lst_file:
+            with open(file_path, 'a+', encoding='UTF-8') as lst_file:
                 lst_file.write(str(link) + '\n')
             return True
         # Mails
         elif link.startswith('mailto:'):
             file_path = self.out_path + '/mails.txt'
-            with open(file_path, 'w+', encoding='UTF-8') as lst_file:
+            with open(file_path, 'a+', encoding='UTF-8') as lst_file:
                 lst_file.write(str(link) + '\n')
             return True
         # Type of files
@@ -169,7 +169,7 @@ class Crawler:
                 # Keeps logs for every webpage visited.
                 if self.logs:
                     it_code = html_page.getcode()
-                    with open(log_path, 'w+', encoding='UTF-8') as log_file:
+                    with open(log_path, 'a+', encoding='UTF-8') as log_file:
                         log_file.write(f"[{str(it_code)}] {str(item)} \n")
 
             print(f"## Step {str(index + 1)} completed \n\t "
